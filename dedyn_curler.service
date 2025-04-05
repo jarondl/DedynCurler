@@ -1,0 +1,7 @@
+[Unit]
+Description="Update dynamic dns"
+
+[Service]
+ExecStart=/usr/local/bin/dedyn_curler.sh
+DynamicUser=yes
+LoadCredentialEncrypted=dedyn_user:/usr/local/etc/dedyn_user.cred

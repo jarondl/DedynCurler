@@ -1,0 +1,9 @@
+[Unit]
+Description="Run dedyn curler every 5 minutes"
+
+[Timer]
+OnUnitActiveSec=5min
+Unit=dedyn_curler.service
+
+[Install]
+WantedBy=multi-user.target
