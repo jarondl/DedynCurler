@@ -2,6 +2,6 @@
 Description="Update dynamic dns"
 
 [Service]
-ExecStart=/usr/local/bin/dedyn_curler.sh
+ExecStart=/usr/local/bin/dedyn_curler.sh %i
 DynamicUser=yes
 LoadCredentialEncrypted=dedyn_user:/usr/local/etc/dedyn_user.cred
