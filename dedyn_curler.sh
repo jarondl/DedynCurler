@@ -14,10 +14,10 @@ echo "starting dedyn curler for ${hostname}"
 
 case "$hostname" in
   ipv4*)
-    ip="$(curl -s --fail-with-body https://api.ipify.org)"
+    ip="myipv6=&myipv4=$(curl -s --fail-with-body https://api.ipify.org)"
     ;;
   ipv6*)
-    ip="$(curl -s --fail-with-body https://api6.ipify.org)"
+    ip="myipv4=&myipv6=$(curl -s --fail-with-body https://api6.ipify.org)"
     ;;
 esac
 if (( $? != 0 )) || [[ -z "$ip" ]]; then
@@ -25,7 +25,8 @@ if (( $? != 0 )) || [[ -z "$ip" ]]; then
   exit 1
 fi
 
-req="https://update.dedyn.io/?myip=${ip}&hostname=${hostname}"
+
+req="https://update.dedyn.io/?${ip}&hostname=${hostname}"
 echo "requesting curl ${req}"
 
 curl -s --fail-with-body -K "${CREDENTIALS_DIRECTORY}/dedyn_user" "${req}"
